@@ -19,7 +19,9 @@ A **Django web app** that predicts the resale price of a used car from its specs
    predicted price → rendered back in the result template
 ```
 
-The login flow uses Django's auth system; predictions sit behind authentication. There's an AES layer (PyCryptodome) over user-submitted fields — more an exercise in adding crypto than a security-critical feature, since the key is in source.
+The login flow uses Django's auth system; predictions sit behind authentication.
+
+There is also an **AES (PyCryptodome) layer wrapped around form fields**. To be honest: this was a learning exercise in calling crypto APIs from Django, not a deliberate security design. On a single-tenant localhost form, encrypting then decrypting fields in the same process protects against essentially nothing — and the key is in source, in ECB mode, both of which would be real bugs in production. It's documented here so a reader doesn't mistake it for thoughtful threat modeling.
 
 ## Tech stack
 
