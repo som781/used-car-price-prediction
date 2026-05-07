@@ -13,7 +13,7 @@ A **Django web app** that predicts the resale price of a used car from its specs
    Django view (prediction/views.py)
               │  preprocess + label-encode categoricals
               ▼
-   serialized scikit-learn regressor (loaded once at request time)
+   pre-trained KNN model (knn_model_for_encrypted_data.sav) loaded once at request time
               │
               ▼
    predicted price → rendered back in the result template
@@ -26,7 +26,7 @@ There is also an **AES (PyCryptodome) layer wrapped around form fields**. To be 
 ## Tech stack
 
 - **Backend / web:** Django 4.1
-- **ML:** scikit-learn regressor (serialized to disk), pandas, numpy, joblib
+- **ML:** scikit-learn KNN classifier (`knn_model_for_encrypted_data.sav`), pandas, numpy, joblib
 - **Crypto:** pycryptodome AES-ECB (demo only — see caveat below)
 - **Database:** SQLite (Django default)
 - **Frontend:** Django templates + Bootstrap
